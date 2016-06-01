@@ -2,7 +2,7 @@
 debug           = require('debug')('meshblu-connector-initial-state:index')
 IS              = require 'initial-state'
 _               = require 'lodash'
-schemas         = require './legacySchemas.coffee'
+schemas         = require '../legacySchemas.coffee'
 
 
 class InitialState extends EventEmitter
