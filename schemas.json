@@ -1,61 +1,55 @@
 {
   "schemas": {
     "version": "1.0.0",
-    "form": {
-      "message": {
-        "url": null
-      },
-      "configure": {
-        "url": null
-      }
-    },
     "configure": {
-      "url": null,
-      "options": {
+      "default-config": {
+        "title": "Default Config",
         "type" : "object",
         "properties" : {
-          "type" : "object",
-          "properties" : {
-            "example" : {
-              "type" : "string"
-            }
+          "options": {
+            "type": "object",
+            "properties": {
+              "buckets" : {
+                "title": "Buckets",
+                "type" : "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "title": "Name",
+                      "type": "string"
+                    },
+                    "access_key": {
+                      "title": "Access Key",
+                      "type": "string"
+                    }
+                  },
+                  "required": ["name", "access_key"]
+                }
+              }
+            },
+            "required": ["buckets"]
           }
-        }
+        },
+        "requried": ["options"]
       }
     },
     "message": {
-      "url": null,
-      "$schema": "http://json-schema.org/draft-04/schema#",
-      "definitions": {
-        "example-message-01": {
-          "type": "object",
-          "properties": {
-            "example-opt": {
-              "type": "string"
-            },
-            "another-example-opt":{
-              "type": "string"
-            }
+      "push-to-bucket": {
+        "title": "Push to Bucket",
+        "type": "object",
+        "properties": {
+          "bucket": {
+            "type": "string"
           },
-          "required": ["example-opt", "another-example-opt"]
+          "event":{
+            "type": "string"
+          },
+          "value":{
+            "type": "string"
+          }
         },
-        "example-message-02": {
-          "type": "object",
-          "properties": {
-            "some-opt": {
-              "type": "string"
-            },
-            "another-some-opt":{
-              "type": "string"
-            }
-          },
-          "required": ["some-opt", "another-some-opt"]
-        }
-      },
-      "type": "object",
-      "properties": {
-        "example-message-01": { "$ref": "#/definitions/example-message-01" },
-        "example-message-02": { "$ref": "#/definitions/example-message-02" }
+        "required": ["bucket", "event", "value"]
       }
     }
   }
